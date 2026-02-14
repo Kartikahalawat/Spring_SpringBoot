@@ -4,6 +4,7 @@ import com.eazybytes.ex2.beans.Vehicle;
 import org.springframework.context.annotation.*;
 
 @Configuration
+@Import({AnotherProjectConfig.class})
 public class ProjectConfig {
 
     @Bean(name = "audiVehicle")
