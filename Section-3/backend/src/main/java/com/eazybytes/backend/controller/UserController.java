@@ -2,9 +2,11 @@ package com.eazybytes.backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("api/dummy/users")
 public class UserController {
 
 //    @GetMapping({"/api/dummy/users/{userId}/posts/{postId}", "/api/dummy/users/{userId}"})
@@ -19,7 +21,7 @@ public class UserController {
 //        return response;
 //    }
 
-    @GetMapping({"/api/dummy/users/{userId}/orders/{orderId}"})
+    @GetMapping({"/{userId}/orders/{orderId}"})
     public String searchUserPostWithMultiPathVariables(@PathVariable(name = "userId") Long customerId, @PathVariable Long orderId) {
         return "Fetched user with id: " + customerId + "and order id: " + orderId;
     }
