@@ -41,4 +41,15 @@ public class UserController {
         return "Fetched user with query params: " + requestParams.get("name") + " and gender: " + requestParams.get("gender");
     }
 
+    @GetMapping("/headers")
+    public String readRequestHeaders(@RequestHeader("User-Agent") String userAgent,
+                                     @RequestHeader(name = "User-Location", required = false, defaultValue = "Hyderabad") String userLocation) {
+        return "Recieved: " + userAgent + " " + userLocation;
+    }
+
+    @GetMapping("/headers/map")
+    public String readRequestHeadersWithMap(@RequestHeader Map<String, String> requestHeaders) {
+        return "Recieved: " + requestHeaders.get("User-Agent") + " " + requestHeaders.get("User-Location");
+    }
+
 }
