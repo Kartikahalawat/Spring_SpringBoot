@@ -1,9 +1,8 @@
 package com.eazybytes.backend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/dummy/users")
@@ -24,6 +23,22 @@ public class UserController {
     @GetMapping({"/{userId}/orders/{orderId}"})
     public String searchUserPostWithMultiPathVariables(@PathVariable(name = "userId") Long customerId, @PathVariable Long orderId) {
         return "Fetched user with id: " + customerId + "and order id: " + orderId;
+    }
+
+    @GetMapping({"/{userId}/address/{addressId}"})
+    public String searchUserPostWithMultiPathVariables(@PathVariable Map<String, String> pathVariablesMap) {
+        return "Fetched user with id: " + pathVariablesMap.get("userId") + "and address id: " + pathVariablesMap.get("addressId");
+    }
+
+    @GetMapping("/search")
+    public String searchUserWithQueryParams(@RequestParam(required = false, defaultValue = "Guest") String name,
+                                            @RequestParam(name = "gender") String sex){
+        return "Fetched user with query params: " + name + " and gender: " + sex;
+    }
+
+    @GetMapping("/search/map")
+    public String searchUserWithQueryParams(@RequestParam Map<String, String> requestParams) {
+        return "Fetched user with query params: " + requestParams.get("name") + " and gender: " + requestParams.get("gender");
     }
 
 }
